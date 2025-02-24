@@ -6,13 +6,18 @@
               class="block focus:outline-none"
               @click="isMenuOpen = !isMenuOpen"
       >
-                <span v-if="isMenuOpen" class="text-5xl">
-                    <img src="https://img.icons8.com/ios-filled/100/ffffff/delete-sign.png" alt="close" width="50" height="50">
-                </span>
+        <span v-if="isMenuOpen" class="text-5xl">
+          <img src="https://img.icons8.com/ios-filled/100/ffffff/delete-sign.png" alt="close" width="50" height="50">
+        </span>
         <span v-else class="text-5xl">
-                    <img src="https://img.icons8.com/ios-filled/100/ffffff/menu--v6.png" alt="menu" width="50" height="50">
-                </span>
+          <img src="https://img.icons8.com/ios-filled/100/ffffff/menu--v6.png" alt="menu" width="50" height="50">
+        </span>
       </button>
+    </div>
+
+    <!-- Logo with White Border and Click to Scroll to Contact -->
+    <div class="flex-shrink-0 cursor-pointer" @click="scrollToSection('#contact')">
+      <img src="@/assets/logo.png" alt="Logo" class="h-12 w-auto md:h-16 border-2 border-white">
     </div>
 
     <!-- Navbar Link -->
@@ -40,6 +45,7 @@
 
 <script setup>
 import { ref } from 'vue';
+
 const Menu = ref([
   { name: 'Services', href: '#services' },
   { name: 'About Me', href: '#about' },
