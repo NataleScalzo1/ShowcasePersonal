@@ -22,12 +22,15 @@
                       Let's connect and build something great together! 🚀
                     </p>
                     <div class="flex items-center gap-3 pt-9 flex-col sm:flex-row sm:w-max sm:mx-auto lg:mx-0">
-                        <button class="px-6 md:px-7 py-3 rounded-full relative group w-full sm:w-max flex justify-center">
-                            <span class="absolute inset-0 rounded-3xl group-hover:scale-105 origin-center transition-all ease-in-out bg-primary
-                            border-2 border-transparent"></span>
-                            <span class="relative flex items-center justify-center text-white">Hire Me</span>
-                        </button>
-                        <button class=" border border-primary px-6 md:px-7 py-3 rounded-full relative group w-full sm:w-max flex justify-center">
+                      <button
+                          class="px-6 md:px-7 py-3 rounded-full relative group w-full sm:w-max flex justify-center"
+                          @click="scrollToSection('#contact')"
+                      >
+                        <span class="absolute inset-0 rounded-3xl group-hover:scale-105 origin-center transition-all ease-in-out bg-primary border-2 border-transparent"></span>
+                        <span class="relative flex items-center justify-center text-white">Hire Me</span>
+                      </button>
+
+                      <button class=" border border-primary px-6 md:px-7 py-3 rounded-full relative group w-full sm:w-max flex justify-center">
                             <div class="hover:scale-105 transition-all ease-in-out flex justify-center items-center relative">
                             <div class="svg-container">
                                 <svg class="download-icon" width="18" height="22" viewBox="0 0 18 22" fill="none" xmlns="http://www.w3.org/2000/svg" >
@@ -41,7 +44,7 @@
                                 </svg>
                                 <div class="download-loader text-white hidden"></div>
                             </div>
-                            <a href="/resume.pdf" download="resume.pdf" class="pl-2 text-primary"> Download resume</a>
+                            <a href="/resume.pdf" download="resume.pdf" class="pl-2 text-primary"> Download CV</a>
                             </div>
                         </button>
                     </div>
@@ -64,4 +67,11 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
+
+const scrollToSection =(href)=>{
+  const section=document.querySelector(href);
+  if(section){
+    section.scrollIntoView({behavior :'smooth'});
+  }
+}
 </script>
