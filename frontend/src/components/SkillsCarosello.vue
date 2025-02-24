@@ -24,7 +24,7 @@ const images = ref([
   new URL('@/assets/vue_logo-removebg-preview.png', import.meta.url).href,
   new URL('@/assets/java_logo-removebg-preview.png', import.meta.url).href,
   new URL('@/assets/spring_logo.png', import.meta.url).href,
-  new URL('@/assets/kotlin%20logo.png', import.meta.url).href,
+  new URL('@/assets/kotlin_logo.png', import.meta.url).href,
   new URL('@/assets/html-js-css.png', import.meta.url).href,
   new URL('@/assets/mysql.png', import.meta.url).href,
   new URL('@/assets/postgres-removebg-preview.png', import.meta.url).href,
