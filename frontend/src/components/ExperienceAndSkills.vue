@@ -25,7 +25,8 @@
       </div>
       <div data-aos="flip-left">
         <h2 class="text-4xl font-bold text-white text-left mb-8 md:text-center md:mt-0 mt-8">My Experiences</h2>
-        <div class="carousel-container" :style="{ width: carouselWidth + 'px' }">
+
+        <div class="carousel-container" :style="{ width: carouselWidth + 'px' }" style="margin-top: 50px; margin-bottom: 50px">
           <div class="carousel">
             <div class="carousel-inner" :style="{ transform: 'translateX(' + translateX + 'px)' }">
               <!-- Directly Inserted Images -->
@@ -36,7 +37,7 @@
                 <img src="@/assets/Wind_Tre_Business_logo_2020.svg.png" alt="Carousel Image 2" />
               </div>
               <div class="carousel-item">
-                <img src="@/assets/85927e84995367.Y3JvcCw3ODEsNjExLDIwOCwxMQ.png" alt="Carousel Image 3" />
+                <img src="../assets/codermine_logo.png" alt="Carousel Image 3" />
               </div>
               <div class="carousel-item">
                 <img src="@/assets/download.png" alt="Carousel Image 4" style="width: 277px; height: auto;"/>
@@ -47,6 +48,9 @@
             </div>
           </div>
         </div>
+        <p>
+          I have had the privilege of working with some of the biggest names in tech. These experiences have allowed me to grow both personally and professionally, learning cutting-edge technologies, working in agile environments, and collaborating with diverse teams. I have gained expertise in various software development practices, and each experience has broadened my understanding of how to build impactful solutions at scale.
+        </p>
       </div>
     </div>
   </section>
