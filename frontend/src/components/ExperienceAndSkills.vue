@@ -28,8 +28,8 @@
 
         <div class="carousel-container">
           <div class="carousel">
-            <div class="carousel-inner" :style="{ transform: 'translateX(' + translateX + 'px)' }">
-              <div class="carousel-item" v-for="(image, index) in images" :key="index">
+            <div class="carousel-inner">
+              <div class="carousel-item" v-for="(image, index) in duplicatedImages" :key="index">
                 <img :src="image.src" :alt="image.alt" />
               </div>
             </div>
@@ -44,56 +44,18 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted, onUnmounted } from 'vue';
+import {computed, ref} from 'vue';
 
 const images = ref([
   { src: new URL('@/assets/subito7043.jpg', import.meta.url).href, alt: 'Subito Logo' },
   { src: new URL('@/assets/Wind_Tre_Business_logo_2020.svg.png', import.meta.url).href, alt: 'Wind Tre Logo' },
   { src: new URL('@/assets/codermine_logo.png', import.meta.url).href, alt: 'Codermine Logo' },
   { src: new URL('@/assets/download.png', import.meta.url).href, alt: 'Download Logo' },
-  { src: new URL('@/assets/antares_vision_group_logo.jpeg', import.meta.url).href, alt: 'Antares Vision Logo' }
+  { src: new URL('@/assets/antares_vision_group_logo.jpg', import.meta.url).href, alt: 'Antares Vision Logo' }
 ]);
+const duplicatedImages = computed(() => [...images.value, ...images.value]);
 
-const itemsPerPage = ref(3);
-const itemWidth = ref(250);
-const margin = ref(20);
-const currentIndex = ref(0);
 const translateX = ref(0);
-
-const totalItems = computed(() => images.value.length);
-
-function nextSlide() {
-  if (currentIndex.value < totalItems.value - itemsPerPage.value) {
-    currentIndex.value++;
-    translateX.value -= itemWidth.value + margin.value;
-  }
-}
-
-function prevSlide() {
-  if (currentIndex.value > 0) {
-    currentIndex.value--;
-    translateX.value += itemWidth.value + margin.value;
-  }
-}
-
-let autoSlideInterval = null;
-
-onMounted(() => {
-  autoSlideInterval = setInterval(() => {
-    if (currentIndex.value < totalItems.value - itemsPerPage.value) {
-      nextSlide();
-    } else {
-      currentIndex.value = 0;
-      translateX.value = 0;
-    }
-  }, 1500);
-});
-
-onUnmounted(() => {
-  if (autoSlideInterval) {
-    clearInterval(autoSlideInterval);
-  }
-});
 
 const Skills = ref([
   { id: 1, name: 'BACKEND (JAVA, GO, KOTLIN)', width: '98%' },
@@ -105,18 +67,16 @@ const Skills = ref([
 
 <style scoped>
 .carousel-container {
-  margin: 0 auto;
+  margin: 0 auto 40px;
   overflow: hidden;
-}
-
-.carousel {
-  display: flex;
-  margin-bottom: 10px;
+  width: 90%;
+  position: relative;
 }
 
 .carousel-inner {
   display: flex;
-  transition: transform 1s ease;
+  width: max-content;
+  animation: scrollCarousel 10s linear infinite;
 }
 
 .carousel-item {
@@ -124,13 +84,21 @@ const Skills = ref([
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100%;
-  margin: 2px;
+  margin: 0 10px;
 }
 
 .carousel img {
   width: 250px;
   height: auto;
   object-fit: contain;
+}
+
+@keyframes scrollCarousel {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
 }
 </style>
