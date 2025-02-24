@@ -10,9 +10,8 @@
             <ServicesSection />
             <AboutSection />
             <ExperienceAndSkills />
-            <LatestProjSection />
+            <SkillsCarosello />
             <ContactSection />
-            <TestimonialsSection />
             <Footer />
             <BackToTop />
       </div>
@@ -39,6 +38,7 @@ const ContactSection = defineAsyncComponent(()=>import('@/components/ContactSect
 const Footer = defineAsyncComponent(()=>import('@/components/Footer.vue'));
 const BackToTop = defineAsyncComponent(()=>import('@/components/BackToTop.vue'));
 import loadingSpinner from './components/loadingSpinner.vue';
+ import SkillsCarosello from "@/components/SkillsCarosello.vue";
 </script>
 <style>
 

@@ -26,24 +26,11 @@
       <div data-aos="flip-left">
         <h2 class="text-4xl font-bold text-white text-left mb-8 md:text-center md:mt-0 mt-8">My Experiences</h2>
 
-        <div class="carousel-container" :style="{ width: carouselWidth + 'px' }" style="margin-top: 50px; margin-bottom: 50px">
+        <div class="carousel-container">
           <div class="carousel">
             <div class="carousel-inner" :style="{ transform: 'translateX(' + translateX + 'px)' }">
-              <!-- Directly Inserted Images -->
-              <div class="carousel-item">
-                <img src="@/assets/subito7043.jpg" alt="Carousel Image 1" />
-              </div>
-              <div class="carousel-item">
-                <img src="@/assets/Wind_Tre_Business_logo_2020.svg.png" alt="Carousel Image 2" />
-              </div>
-              <div class="carousel-item">
-                <img src="../assets/codermine_logo.png" alt="Carousel Image 3" />
-              </div>
-              <div class="carousel-item">
-                <img src="@/assets/download.png" alt="Carousel Image 4" style="width: 277px; height: auto;"/>
-              </div>
-              <div class="carousel-item">
-                <img src="@/assets/antares_vision_group_logo.jpeg" alt="Carousel Image 5" style="width: 193px; height: auto;"/>
+              <div class="carousel-item" v-for="(image, index) in images" :key="index">
+                <img :src="image.src" :alt="image.alt" />
               </div>
             </div>
           </div>
@@ -59,19 +46,21 @@
 <script setup>
 import { ref, computed, onMounted, onUnmounted } from 'vue';
 
-// Define image-related variables
-const itemsPerPage = ref(3); // Number of images per page
-const itemWidth = ref(250);  // Width of each image
-const margin = ref(20);      // Margin between images
+const images = ref([
+  { src: new URL('@/assets/subito7043.jpg', import.meta.url).href, alt: 'Subito Logo' },
+  { src: new URL('@/assets/Wind_Tre_Business_logo_2020.svg.png', import.meta.url).href, alt: 'Wind Tre Logo' },
+  { src: new URL('@/assets/codermine_logo.png', import.meta.url).href, alt: 'Codermine Logo' },
+  { src: new URL('@/assets/download.png', import.meta.url).href, alt: 'Download Logo' },
+  { src: new URL('@/assets/antares_vision_group_logo.jpeg', import.meta.url).href, alt: 'Antares Vision Logo' }
+]);
+
+const itemsPerPage = ref(3);
+const itemWidth = ref(250);
+const margin = ref(20);
 const currentIndex = ref(0);
 const translateX = ref(0);
 
-// Define a fixed array of images directly (you don't need images from `ref`)
-const totalItems = computed(() => 5);  // Since we have 5 images
-
-const carouselWidth = computed(() => {
-  return (itemWidth.value + margin.value) * itemsPerPage.value;
-});
+const totalItems = computed(() => images.value.length);
 
 function nextSlide() {
   if (currentIndex.value < totalItems.value - itemsPerPage.value) {
@@ -87,39 +76,30 @@ function prevSlide() {
   }
 }
 
-// Auto-slide logic
 let autoSlideInterval = null;
 
 onMounted(() => {
-  // Start auto-sliding when the component mounts
   autoSlideInterval = setInterval(() => {
     if (currentIndex.value < totalItems.value - itemsPerPage.value) {
       nextSlide();
     } else {
-      currentIndex.value = 0;  // Reset to first slide after the last one
+      currentIndex.value = 0;
       translateX.value = 0;
     }
   }, 1500);
 });
 
 onUnmounted(() => {
-  // Clear the interval when the component is destroyed
   if (autoSlideInterval) {
     clearInterval(autoSlideInterval);
   }
 });
 
-// Skill-related logic
 const Skills = ref([
   { id: 1, name: 'BACKEND (JAVA, GO, KOTLIN)', width: '98%' },
   { id: 2, name: 'FRONTEND (HTML, JAVASCRIPT, CSS, VUE, ANGULAR)', width: '88%' },
   { id: 3, name: 'DATABASE MANAGEMENT (SQL, NoSQL, PostgreSQL, MongoDB)', width: '90%' },
   { id: 4, name: 'DEVOPS & CLOUD (DOCKER, KUBERNETES, AWS, CI/CD)', width: '85%' }
-]);
-
-const Experiences = ref([
-  { id: 1, role: 'Software Engineer', company: 'Microsoft', date: 'Mar 2023 - September 2024' },
-  { id: 2, role: 'Frontend Developer', company: 'Spotify', date: 'Mar 2022 - September 2023' }
 ]);
 </script>
 
@@ -145,22 +125,12 @@ const Experiences = ref([
   justify-content: center;
   align-items: center;
   height: 100%;
-  margin: 2px; /* Add margin around the carousel item */
+  margin: 2px;
 }
 
 .carousel img {
   width: 250px;
   height: auto;
   object-fit: contain;
-}
-
-
-.carousel-controls {
-  display: flex;
-  justify-content: center;
-}
-
-.carousel-controls button {
-  margin: 0 5px;
 }
 </style>
