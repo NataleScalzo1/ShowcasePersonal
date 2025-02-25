@@ -36,21 +36,16 @@ const images = ref([
 
 <style scoped>
 .carousel-container {
-  margin: 0 auto;
+  margin: 0 auto 40px;
   overflow: hidden;
   width: 90%;
   position: relative;
 }
 
-.carousel {
-  display: flex;
-  overflow: hidden;
-}
-
 .carousel-inner {
   display: flex;
-  animation: scrollCarousel 20s linear infinite;
   width: max-content;
+  animation: scrollCarousel 10s linear infinite;
 }
 
 .carousel-item {

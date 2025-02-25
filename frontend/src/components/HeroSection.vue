@@ -44,7 +44,7 @@
                                 </svg>
                                 <div class="download-loader text-white hidden"></div>
                             </div>
-                            <a href="/resume.pdf" download="resume.pdf" class="pl-2 text-primary"> Download CV</a>
+                              <a :href="cv" download="natalescalzo_CV.pdf" class="pl-2 text-primary">Download CV</a>
                             </div>
                         </button>
                     </div>
@@ -67,6 +67,7 @@
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 AOS.init();
+const cv = new URL('@/assets/natalescalzo_CV.pdf', import.meta.url).href;
 
 const scrollToSection =(href)=>{
   const section=document.querySelector(href);
